@@ -5,9 +5,16 @@ from pydatacheck.static import APP_NAME, VERSION_STR
 
 
 @register_endpoint(
-    description="check movies",
+    description="check videos",
 )
-def tbd() -> None:
+def check_videos() -> None:
+    print("tbd")
+
+
+@register_endpoint(
+    description="check books",
+)
+def check_books() -> None:
     print("tbd")
 
 
