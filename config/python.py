@@ -1,5 +1,5 @@
 console_scripts = [
-    "pytsv=pytsv.main:main",
+    "pydatacheck=pydatacheck.main:main",
 ]
 dev_requires = [
     "pyclassifiers",
