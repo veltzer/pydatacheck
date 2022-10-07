@@ -9,6 +9,8 @@ from pydatacheck.data_check_videos import do_check_videos
 
 @register_endpoint(
     description="check videos",
+    allow_free_args=True,
+    min_free_args=1,
 )
 def check_videos() -> None:
     do_check_videos(get_free_args())
@@ -16,6 +18,8 @@ def check_videos() -> None:
 
 @register_endpoint(
     description="check books",
+    allow_free_args=True,
+    min_free_args=1,
 )
 def check_books() -> None:
     do_check_books(get_free_args())
