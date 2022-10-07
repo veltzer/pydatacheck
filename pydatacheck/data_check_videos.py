@@ -1,11 +1,8 @@
-#!/usr/bin/env python
-
 """
 Check that .yaml files have correct names of movies
 """
 
 
-import sys
 import shelve
 from imdb import Cinemagoer  # type: ignore
 import yaml
@@ -22,12 +19,11 @@ def imdb_id_to_imdb_data(f_imdb_id, cache, cinemagoer):
     return obj
 
 
-def main():
+def do_check_videos(files_to_check):
     """ main entry point """
     shelve_filename = "imdb_id_to_imdb_data.shelve"
     cache = shelve.open(shelve_filename)
     cinemagoer = Cinemagoer()
-    files_to_check = sys.argv[1:]
     for file_to_check in files_to_check:
         # print(f"checking [{file_to_check}]")
         with open(file_to_check, encoding="utf-8") as stream:
@@ -41,7 +37,3 @@ def main():
             f_title = imdb_data["title"]
             assert f_title == f_name, f"{f_imdb_id} {f_title} {f_name}"
     cache.close()
-
-
-if __name__ == "__main__":
-    main()

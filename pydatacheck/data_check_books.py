@@ -1,11 +1,8 @@
-#!/usr/bin/env python
-
 """
-This script checks goodreads ids of books
+This code checks goodreads ids of books
 """
 
 
-import sys
 import shelve
 import yaml
 import requests
@@ -73,12 +70,11 @@ def simania_id_to_simania_data(f_simania_id, cache, session):
     return obj
 
 
-def main():
+def do_check_books(files_to_check):
     """ main entry point """
     cache_goodreads = shelve.open("goodreads_id_to_goodreads_data.shelve")
     cache_simania = shelve.open("simania_id_to_simania_data.shelve")
     session = requests.Session()
-    files_to_check = sys.argv[1:]
     for file_to_check in files_to_check:
         # print(f"checking [{file_to_check}]")
         with open(file_to_check, encoding="utf-8") as stream:
@@ -105,7 +101,3 @@ def main():
                 assert done is True, f"no id found for {datum['names']}..."
     cache_goodreads.close()
     cache_simania.close()
-
-
-if __name__ == "__main__":
-    main()
