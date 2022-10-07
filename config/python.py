@@ -1,8 +1,10 @@
+console_scripts = [
+    "pytsv=pytsv.main:main",
+]
 dev_requires = [
     "pyclassifiers",
     "pypitools",
     "pydmt",
-    "Sphinx",
 ]
 install_requires = [
     "pytconf",

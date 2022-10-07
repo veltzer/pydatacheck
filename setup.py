@@ -9,7 +9,7 @@ def get_readme():
 setuptools.setup(
     # the first three fields are a must according to the documentation
     name="pydatacheck",
-    version="0.0.1",
+    version="0.0.2",
     packages=[
         'pydatacheck',
     ],
@@ -53,4 +53,7 @@ setuptools.setup(
         'Topic :: Utilities',
         'License :: OSI Approved :: MIT License',
     ],
+    entry_points={"console_scripts": [
+        'pytsv=pytsv.main:main',
+    ]},
 )

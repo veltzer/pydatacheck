@@ -7,7 +7,6 @@ beautifulsoup4
 pyclassifiers
 pypitools
 pydmt
-Sphinx
 # test requirements
 pylint
 pytest
@@ -16,3 +15,5 @@ pyflakes
 flake8
 pymakehelper
 mypy
+types-PyYAML
+types-requests
