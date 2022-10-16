@@ -3,17 +3,3 @@
 pytconf
 cinemagoer
 beautifulsoup4
-# dev requirements
-pyclassifiers
-pypitools
-pydmt
-# test requirements
-pylint
-pytest
-pytest-cov
-pyflakes
-flake8
-pymakehelper
-mypy
-types-PyYAML
-types-requests
