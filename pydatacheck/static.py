@@ -1,5 +1,5 @@
 """ version which can be consumed from within the module """
-VERSION_STR = "0.0.6"
-DESCRIPTION = "pydatacheck checks yaml data files"
+VERSION_STR = "0.0.7"
+DESCRIPTION = "Pydatacheck checks yaml data files"
 APP_NAME = "pydatacheck"
 LOGGER_NAME = "pydatacheck"

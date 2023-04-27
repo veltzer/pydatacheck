@@ -9,12 +9,12 @@ def get_readme():
 setuptools.setup(
     # the first three fields are a must according to the documentation
     name="pydatacheck",
-    version="0.0.6",
+    version="0.0.7",
     packages=[
         "pydatacheck",
     ],
     # from here all is optional
-    description="pydatacheck checks yaml data files",
+    description="Pydatacheck checks yaml data files",
     long_description=get_readme(),
     long_description_content_type="text/x-rst",
     author="Mark Veltzer",

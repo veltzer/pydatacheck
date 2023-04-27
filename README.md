@@ -1,12 +1,12 @@
 # *pydatacheck* project by Mark Veltzer
 
-description: pydatacheck checks yaml data files
+description: Pydatacheck checks yaml data files
 
 project website: https://veltzer.github.io/pydatacheck
 
 author: Mark Veltzer
 
-version: 0.0.6
+version: 0.0.7
 
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 

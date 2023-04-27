@@ -1,4 +1,4 @@
-description_short = "pydatacheck checks yaml data files"
+description_short = "Pydatacheck checks yaml data files"
 keywords = [
     "yaml",
     "imdb",
