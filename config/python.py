@@ -2,9 +2,11 @@ console_scripts = [
     "pydatacheck=pydatacheck.main:main",
 ]
 dev_requires = [
-    "pyclassifiers",
     "pypitools",
     "pydmt",
+]
+make_requires = [
+    "pyclassifiers",
 ]
 install_requires = [
     "pytconf",
