@@ -5,13 +5,14 @@ dev_requires = [
     "pypitools",
     "pydmt",
 ]
-make_requires = [
-    "pyclassifiers",
-]
+config_requires = []
 install_requires = [
     "pytconf",
     "cinemagoer",
     "beautifulsoup4",
+]
+make_requires = [
+    "pyclassifiers",
 ]
 test_requires = [
     "pylint",
@@ -24,3 +25,4 @@ test_requires = [
     "types-PyYAML",
     "types-requests",
 ]
+requires = config_requires + install_requires + make_requires + test_requires
