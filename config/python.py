@@ -1,20 +1,23 @@
-console_scripts = [
+from typing import List
+
+
+console_scripts: List[str] = [
     "pydatacheck=pydatacheck.main:main",
 ]
-dev_requires = [
+dev_requires: List[str] = [
     "pypitools",
     "pydmt",
 ]
-config_requires = []
-install_requires = [
+config_requires: List[str] = []
+install_requires: List[str] = [
     "pytconf",
     "cinemagoer",
     "beautifulsoup4",
 ]
-make_requires = [
+make_requires: List[str] = [
     "pyclassifiers",
 ]
-test_requires = [
+test_requires: List[str] = [
     "pylint",
     "pytest",
     "pytest-cov",
