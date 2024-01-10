@@ -5,16 +5,20 @@ console_scripts: List[str] = [
     "pydatacheck=pydatacheck.main:main",
 ]
 dev_requires: List[str] = [
+    "pymultigit",
     "pypitools",
-    "pydmt",
+    "black",
 ]
-config_requires: List[str] = []
+config_requires: List[str] = [
+    "pyclassifiers",
+]
 install_requires: List[str] = [
     "pytconf",
     "cinemagoer",
     "beautifulsoup4",
 ]
 make_requires: List[str] = [
+    "pydmt",
     "pyclassifiers",
 ]
 test_requires: List[str] = [
