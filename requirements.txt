@@ -1,0 +1,15 @@
+# THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT!
+pyclassifiers
+pytconf
+cinemagoer
+beautifulsoup4
+pydmt
+pylint
+pytest
+pytest-cov
+pyflakes
+flake8
+pymakehelper
+mypy
+types-PyYAML
+types-requests
