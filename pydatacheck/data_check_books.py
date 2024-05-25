@@ -21,7 +21,7 @@ def get_goodreads_data(f_goodreads_id, session):
     soup = bs4.BeautifulSoup(response.content, "html.parser")
     f_title = soup.find(id="bookTitle")
     if f_title is None:
-        f_title = soup.find("h1", {"data-testid":"bookTitle"})
+        f_title = soup.find("h1", {"data-testid": "bookTitle"})
     else:
         f_title = f_title.text.strip()
     if f_title is None:
@@ -40,7 +40,7 @@ def get_simania_data(f_simania_id, session):
     response.raise_for_status()
     # print(response.content)
     soup = bs4.BeautifulSoup(response.content, "html.parser")
-    results = soup.findAll("h2", {"style":""})
+    results = soup.findAll("h2", {"style": ""})
     assert len(results) == 1
     f_title = results[0].text
     if f_title is None:
