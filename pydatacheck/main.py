@@ -1,3 +1,5 @@
+""" main.py """
+
 import pylogconf.core
 from pytconf import register_endpoint, register_main, config_arg_parse_and_launch, get_free_args
 
