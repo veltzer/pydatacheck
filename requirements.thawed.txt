@@ -8,6 +8,6 @@ pylint
 pymakehelper
 pytconf
 pytest
-pytest-cov
+ruff
 types-PyYAML
 types-requests
