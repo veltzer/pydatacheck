@@ -1,8 +1,10 @@
 # THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT!
 beautifulsoup4
 cinemagoer
+hatch
 mypy
 pyclassifiers
+pycmdtools
 pydmt
 pylint
 pymakehelper
