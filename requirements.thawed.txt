@@ -3,6 +3,7 @@ beautifulsoup4
 cinemagoer
 hatch
 mypy
+pyclassifiers
 pycmdtools
 pydmt
 pylint
