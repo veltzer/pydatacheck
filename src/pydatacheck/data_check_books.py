@@ -98,6 +98,7 @@ def do_check_books(files_to_check):
                     assert f_title == f_name, f"{f_simania_id} {f_title} {f_name}"
                     done = True
             if CHEKC_ID_FOR_EVERY_BOOK:
-                assert done is True, f"no id found for {datum['names']}..."
+                names = datum["names"]
+                assert done is True, f"no id found for {names}..."
     cache_goodreads.close()
     cache_simania.close()
