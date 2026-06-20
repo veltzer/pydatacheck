@@ -4,8 +4,18 @@ Check that .yaml files have correct names of movies
 
 
 import shelve
-from imdb import Cinemagoer  # type: ignore
+import pkgutil
+import importlib.util
 import yaml
+
+
+def _get_cinemagoer_class():
+    """ import Cinemagoer lazily, shimming pkgutil.find_loader for Python 3.14+ """
+    # cinemagoer (imdb) still uses pkgutil.find_loader, removed in Python 3.14
+    if not hasattr(pkgutil, "find_loader"):
+        pkgutil.find_loader = importlib.util.find_spec
+    from imdb import Cinemagoer  # type: ignore  # pylint: disable=import-outside-toplevel
+    return Cinemagoer
 
 
 def imdb_id_to_imdb_data(f_imdb_id, cache, cinemagoer):
@@ -23,7 +33,7 @@ def do_check_videos(files_to_check):
     """ main entry point """
     shelve_filename = "imdb_id_to_imdb_data.shelve"
     cache = shelve.open(shelve_filename)
-    cinemagoer = Cinemagoer()
+    cinemagoer = _get_cinemagoer_class()()
     for file_to_check in files_to_check:
         # print(f"checking [{file_to_check}]")
         with open(file_to_check, encoding="utf-8") as stream:

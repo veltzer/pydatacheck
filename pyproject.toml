@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pydatacheck"
-version = "0.0.8"
+version = "0.0.9"
 requires-python = ">=3.12"
 authors = [
 	{ name = "Mark Veltzer", email = "mark.veltzer@gmail.com" }
