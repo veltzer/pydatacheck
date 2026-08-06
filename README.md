@@ -6,7 +6,7 @@ project website: https://veltzer.github.io/pydatacheck
 
 author: Mark Veltzer
 
-version: 0.0.8
+version: 0.0.9
 
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 
@@ -32,12 +32,11 @@ version: 0.0.8
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/pydatacheck)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/pydatacheck)
 
-
-
 ## contact me
+
 [mailto](mailto:mark.veltzer@gmail.com)
 ![gitter](https://img.shields.io/gitter/room/veltzer/mark.veltzer)
 ![discord](https://img.shields.io/discord/719336281624281119)
 ![discord](https://img.shields.io/discord/719336282194444302)
 
-Mark Veltzer, Copyright © 2022, 2023, 2024, 2025
+Mark Veltzer, Copyright © 2022, 2023, 2024, 2025, 2026
