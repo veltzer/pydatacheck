@@ -16,4 +16,6 @@ pip = [
     "pytconf",
     "cinemagoer",
     "beautifulsoup4",
+    "types-PyYAML",
+    "types-requests",
 ]
