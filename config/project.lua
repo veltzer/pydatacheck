@@ -6,3 +6,4 @@ KEYWORDS = {
     "simania",
     "goodreads",
 }
+PYPI = true
