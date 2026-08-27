@@ -83,3 +83,12 @@ installer = "uv"
 
 [tool.uv.pip]
 prerelease = "disallow"
+
+[dependency-groups]
+dev = [
+    "types-PyYAML",
+    "types-requests",
+    "pylogconf",
+    "requests",
+    "pyyaml",
+]
