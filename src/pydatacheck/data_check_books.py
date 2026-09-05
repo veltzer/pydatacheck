@@ -14,7 +14,9 @@ CHEKC_ID_FOR_EVERY_BOOK = True
 
 def get_goodreads_data(f_goodreads_id, session):
     # print(f"retrieving {f_goodreads_id}...")
-    url = f"https://www.goodreads.com/book/show/{f_goodreads_id}"
+    # /book/show/ answers non-browser clients with an empty 202 (AWS WAF
+    # challenge); the /en/ prefixed url serves the same page unchallenged.
+    url = f"https://www.goodreads.com/en/book/show/{f_goodreads_id}"
     response = session.get(url)
     response.raise_for_status()
     # print(response.content)
@@ -22,7 +24,7 @@ def get_goodreads_data(f_goodreads_id, session):
     f_title = soup.find(id="bookTitle")
     if f_title is None:
         f_title = soup.find("h1", {"data-testid": "bookTitle"})
-    else:
+    if f_title is not None:
         f_title = f_title.text.strip()
     if f_title is None:
         with open("/tmp/temp.html", "w") as file:
