@@ -42,9 +42,11 @@ def get_simania_data(f_simania_id, session):
     response.raise_for_status()
     # print(response.content)
     soup = bs4.BeautifulSoup(response.content, "html.parser")
-    results = soup.findAll("h2", {"style": ""})
-    assert len(results) == 1
-    f_title = results[0].text
+    # simania's rebuilt site puts the book title in the page's h1 (the old
+    # markup had it in an unstyled h2, which no longer exists)
+    f_title = soup.find("h1")
+    if f_title is not None:
+        f_title = f_title.text.strip()
     if f_title is None:
         with open("/tmp/temp.html", "w") as file:
             file.write(str(soup))
