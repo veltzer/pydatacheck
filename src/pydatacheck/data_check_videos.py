@@ -4,6 +4,7 @@ Check that .yaml files have correct names of movies
 
 
 import importlib.util
+import os
 import pkgutil
 import shelve
 
@@ -32,7 +33,8 @@ def imdb_id_to_imdb_data(f_imdb_id, cache, get_cinemagoer):
 
 def do_check_videos(files_to_check):
     """ main entry point """
-    shelve_filename = "imdb_id_to_imdb_data.shelve"
+    # the data repo keeps all its shelve caches under shelve/
+    shelve_filename = os.path.join("shelve", "imdb_id_to_imdb_data.shelve")
     with shelve.open(shelve_filename) as cache:
         # Built lazily: constructing Cinemagoer needs a local IMDb dataset
         # (current releases only ship the "s3" access system, and its default

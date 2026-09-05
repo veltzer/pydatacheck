@@ -3,6 +3,7 @@ This code checks goodreads ids of books
 """
 
 
+import os
 import shelve
 
 import bs4  # type: ignore
@@ -76,8 +77,9 @@ def simania_id_to_simania_data(f_simania_id, cache, session):
 
 def do_check_books(files_to_check):
     """ main entry point """
-    with shelve.open("goodreads_id_to_goodreads_data.shelve") as cache_goodreads, \
-            shelve.open("simania_id_to_simania_data.shelve") as cache_simania:
+    # the data repo keeps all its shelve caches under shelve/
+    with shelve.open(os.path.join("shelve", "goodreads_id_to_goodreads_data.shelve")) as cache_goodreads, \
+            shelve.open(os.path.join("shelve", "simania_id_to_simania_data.shelve")) as cache_simania:
         session = requests.Session()
         for file_to_check in files_to_check:
             # print(f"checking [{file_to_check}]")
