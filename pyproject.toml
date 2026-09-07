@@ -99,11 +99,12 @@ prerelease = "disallow"
 dev = [
     "mypy",
     "pylint",
+    "pylogconf",
     "pytest",
+    "pyyaml",
+    "requests",
     "ruff",
+    "sphinx",
     "types-PyYAML",
     "types-requests",
-    "pylogconf",
-    "requests",
-    "pyyaml",
 ]
