@@ -607,7 +607,10 @@ source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },
     { name = "cinemagoer" },
+    { name = "pylogconf" },
     { name = "pytconf" },
+    { name = "pyyaml" },
+    { name = "requests" },
 ]
 
 [package.dev-dependencies]
@@ -628,7 +631,10 @@ dev = [
 requires-dist = [
     { name = "beautifulsoup4" },
     { name = "cinemagoer" },
+    { name = "pylogconf" },
     { name = "pytconf" },
+    { name = "pyyaml" },
+    { name = "requests" },
 ]
 
 [package.metadata.requires-dev]

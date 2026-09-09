@@ -36,6 +36,9 @@ dependencies = [
     "pytconf",
     "cinemagoer",
     "beautifulsoup4",
+    "pylogconf",
+    "pyyaml",
+    "requests",
 ]
 
 [project.urls]
