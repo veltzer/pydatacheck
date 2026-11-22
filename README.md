@@ -5,7 +5,7 @@
 
 description: Pydatacheck checks yaml data files
 
-project website: https://veltzer.github.io/pydatacheck
+project website: <https://veltzer.github.io/pydatacheck>
 
 author: Mark Veltzer
 
