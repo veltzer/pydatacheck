@@ -6,7 +6,7 @@ This code checks goodreads ids of books
 import os
 import shelve
 
-import bs4  # type: ignore
+import bs4
 import requests
 import yaml
 

@@ -15,9 +15,8 @@ def _get_cinemagoer_class():
     """ import Cinemagoer lazily, shimming pkgutil.find_loader for Python 3.14+ """
     # cinemagoer (imdb) still uses pkgutil.find_loader, removed in Python 3.14
     if not hasattr(pkgutil, "find_loader"):
-        pkgutil.find_loader = importlib.util.find_spec
-    from imdb import Cinemagoer  # type: ignore  # pylint: disable=import-outside-toplevel
-    return Cinemagoer
+        vars(pkgutil)["find_loader"] = importlib.util.find_spec
+    return importlib.import_module("imdb").Cinemagoer
 
 
 def imdb_id_to_imdb_data(f_imdb_id, cache, get_cinemagoer):
