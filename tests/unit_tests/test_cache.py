@@ -6,6 +6,7 @@ here with fakes, so no network, requests, or imdb access happens.
 """
 
 import unittest
+from typing import Any
 
 from pydatacheck import data_check_books, data_check_videos
 
@@ -41,7 +42,7 @@ class GoodreadsCacheTests(unittest.TestCase):
     def test_cache_miss_fetches_parses_and_stores(self):
         html = b'<h1 id="bookTitle">  Real Title  </h1>'
         session = _RecordingSession(html)
-        cache = {}
+        cache: dict[str, Any] = {}
         result = data_check_books.goodreads_id_to_goodreads_data("999", cache, session)
         assert result == {"title": "Real Title"}
         # stored for next time, and the fetch went to the /en/ url
@@ -60,7 +61,7 @@ class SimaniaCacheTests(unittest.TestCase):
 
     def test_cache_miss_parses_h1(self):
         session = _RecordingSession(b"<h1> Sefer </h1>")
-        cache = {}
+        cache: dict[str, Any] = {}
         result = data_check_books.simania_id_to_simania_data("77", cache, session)
         assert result == {"title": "Sefer"}
         assert "item_id=77" in session.calls[0]
@@ -85,7 +86,7 @@ class ImdbCacheTests(unittest.TestCase):
             def get_movie(imdb_id):
                 return {"title": f"movie-{imdb_id}"}
 
-        cache = {}
+        cache: dict[str, Any] = {}
         result = data_check_videos.imdb_id_to_imdb_data("tt2", cache, FakeCinemagoer)
         assert result == {"title": "movie-tt2"}
         assert cache["tt2"] == {"title": "movie-tt2"}

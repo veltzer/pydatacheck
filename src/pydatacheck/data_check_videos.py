@@ -7,6 +7,7 @@ import importlib.util
 import os
 import pkgutil
 import shelve
+from typing import Any
 
 import yaml
 
@@ -40,7 +41,7 @@ def do_check_videos(files_to_check):
         # URI is the malformed `sqlite://cinemagoer.db`). When every id is
         # already in the shelve — the normal case in CI — no instance is
         # needed at all, so only an actual cache miss pays that cost.
-        cinemagoer_instance = []
+        cinemagoer_instance: list[Any] = []
 
         def get_cinemagoer():
             if not cinemagoer_instance:
