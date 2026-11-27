@@ -5,15 +5,26 @@ This code checks goodreads ids of books
 
 import os
 import shelve
+from typing import TYPE_CHECKING, Any, Protocol
 
 import bs4
 import requests
 import yaml
 
+if TYPE_CHECKING:
+    from collections.abc import MutableMapping
+
+
 CHEKC_ID_FOR_EVERY_BOOK = True
 
 
-def get_goodreads_data(f_goodreads_id, session):
+class Fetcher(Protocol):
+    """ What the checks need of a requests session. """
+
+    def get(self, url: str) -> Any: ...
+
+
+def get_goodreads_data(f_goodreads_id: str, session: Fetcher) -> dict[str, str]:
     # /book/show/ answers non-browser clients with an empty 202 (AWS WAF
     # challenge); the /en/ prefixed url serves the same page unchallenged.
     url = f"https://www.goodreads.com/en/book/show/{f_goodreads_id}"
@@ -34,7 +45,7 @@ def get_goodreads_data(f_goodreads_id, session):
     }
 
 
-def get_simania_data(f_simania_id, session):
+def get_simania_data(f_simania_id: str, session: Fetcher) -> dict[str, str]:
     url = f"https://simania.co.il/bookdetails.php?item_id={f_simania_id}"
     response = session.get(url)
     response.raise_for_status()
@@ -53,7 +64,7 @@ def get_simania_data(f_simania_id, session):
     }
 
 
-def goodreads_id_to_goodreads_data(f_goodreads_id, cache, session):
+def goodreads_id_to_goodreads_data(f_goodreads_id: str, cache: MutableMapping[str, Any], session: Fetcher):
     if f_goodreads_id in cache:
         obj = cache[f_goodreads_id]
     else:
@@ -62,7 +73,7 @@ def goodreads_id_to_goodreads_data(f_goodreads_id, cache, session):
     return obj
 
 
-def simania_id_to_simania_data(f_simania_id, cache, session):
+def simania_id_to_simania_data(f_simania_id: str, cache: MutableMapping[str, Any], session: Fetcher):
     if f_simania_id in cache:
         obj = cache[f_simania_id]
     else:
@@ -71,7 +82,7 @@ def simania_id_to_simania_data(f_simania_id, cache, session):
     return obj
 
 
-def do_check_books(files_to_check):
+def do_check_books(files_to_check: list[str]) -> None:
     """ main entry point """
     # the data repo keeps all its shelve caches under shelve/
     with shelve.open(os.path.join("shelve", "goodreads_id_to_goodreads_data.shelve")) as cache_goodreads, \

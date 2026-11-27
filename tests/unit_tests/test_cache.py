@@ -12,34 +12,34 @@ from pydatacheck import data_check_books, data_check_videos
 
 
 class _FakeResponse:
-    def __init__(self, content):
+    def __init__(self, content: bytes) -> None:
         self.content = content
 
-    def raise_for_status(self):
+    def raise_for_status(self) -> None:
         pass
 
 
 class _RecordingSession:
     """A session whose get() records calls and returns canned HTML."""
 
-    def __init__(self, html):
+    def __init__(self, html: bytes) -> None:
         self._html = html
         self.calls = []
 
-    def get(self, url):
+    def get(self, url: str) -> _FakeResponse:
         self.calls.append(url)
         return _FakeResponse(self._html)
 
 
 class GoodreadsCacheTests(unittest.TestCase):
-    def test_cache_hit_does_not_touch_session(self):
+    def test_cache_hit_does_not_touch_session(self) -> None:
         session = _RecordingSession(b"<html></html>")
         cache = {"123": {"title": "Cached Book"}}
         result = data_check_books.goodreads_id_to_goodreads_data("123", cache, session)
         assert result == {"title": "Cached Book"}
         assert session.calls == []
 
-    def test_cache_miss_fetches_parses_and_stores(self):
+    def test_cache_miss_fetches_parses_and_stores(self) -> None:
         html = b'<h1 id="bookTitle">  Real Title  </h1>'
         session = _RecordingSession(html)
         cache: dict[str, Any] = {}
@@ -52,14 +52,14 @@ class GoodreadsCacheTests(unittest.TestCase):
 
 
 class SimaniaCacheTests(unittest.TestCase):
-    def test_cache_hit_does_not_touch_session(self):
+    def test_cache_hit_does_not_touch_session(self) -> None:
         session = _RecordingSession(b"<html></html>")
         cache = {"77": {"title": "Cached"}}
         result = data_check_books.simania_id_to_simania_data("77", cache, session)
         assert result == {"title": "Cached"}
         assert session.calls == []
 
-    def test_cache_miss_parses_h1(self):
+    def test_cache_miss_parses_h1(self) -> None:
         session = _RecordingSession(b"<h1> Sefer </h1>")
         cache: dict[str, Any] = {}
         result = data_check_books.simania_id_to_simania_data("77", cache, session)
@@ -68,7 +68,7 @@ class SimaniaCacheTests(unittest.TestCase):
 
 
 class ImdbCacheTests(unittest.TestCase):
-    def test_cache_hit_does_not_call_getter(self):
+    def test_cache_hit_does_not_call_getter(self) -> None:
         calls = []
 
         def getter():
@@ -80,10 +80,10 @@ class ImdbCacheTests(unittest.TestCase):
         assert result == {"title": "Cached Movie"}
         assert calls == []
 
-    def test_cache_miss_calls_getter_and_stores(self):
+    def test_cache_miss_calls_getter_and_stores(self) -> None:
         class FakeCinemagoer:
             @staticmethod
-            def get_movie(imdb_id):
+            def get_movie(imdb_id: str) -> dict[str, str]:
                 return {"title": f"movie-{imdb_id}"}
 
         cache: dict[str, Any] = {}

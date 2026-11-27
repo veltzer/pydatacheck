@@ -1,5 +1,5 @@
 """ route.py """
 
 
-def accept(data):
+def accept(data: object) -> None:
     print(data)

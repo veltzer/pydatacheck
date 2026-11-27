@@ -7,9 +7,12 @@ import importlib.util
 import os
 import pkgutil
 import shelve
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import yaml
+
+if TYPE_CHECKING:
+    from collections.abc import Callable, MutableMapping
 
 
 def _get_cinemagoer_class():
@@ -20,7 +23,7 @@ def _get_cinemagoer_class():
     return importlib.import_module("imdb").Cinemagoer
 
 
-def imdb_id_to_imdb_data(f_imdb_id, cache, get_cinemagoer):
+def imdb_id_to_imdb_data(f_imdb_id: str, cache: MutableMapping[str, Any], get_cinemagoer: Callable[[], Any]):
     """ cached version of getting title by imdb """
     if f_imdb_id in cache:
         obj = cache[f_imdb_id]
@@ -31,7 +34,7 @@ def imdb_id_to_imdb_data(f_imdb_id, cache, get_cinemagoer):
     return obj
 
 
-def do_check_videos(files_to_check):
+def do_check_videos(files_to_check: list[str]) -> None:
     """ main entry point """
     # the data repo keeps all its shelve caches under shelve/
     shelve_filename = os.path.join("shelve", "imdb_id_to_imdb_data.shelve")
