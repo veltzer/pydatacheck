@@ -14,13 +14,11 @@ CHEKC_ID_FOR_EVERY_BOOK = True
 
 
 def get_goodreads_data(f_goodreads_id, session):
-    # print(f"retrieving {f_goodreads_id}...")
     # /book/show/ answers non-browser clients with an empty 202 (AWS WAF
     # challenge); the /en/ prefixed url serves the same page unchallenged.
     url = f"https://www.goodreads.com/en/book/show/{f_goodreads_id}"
     response = session.get(url)
     response.raise_for_status()
-    # print(response.content)
     soup = bs4.BeautifulSoup(response.content, "html.parser")
     f_title = soup.find(id="bookTitle")
     if f_title is None:
@@ -37,11 +35,9 @@ def get_goodreads_data(f_goodreads_id, session):
 
 
 def get_simania_data(f_simania_id, session):
-    # print(f"retrieving [{f_simania_id}]...")
     url = f"https://simania.co.il/bookdetails.php?item_id={f_simania_id}"
     response = session.get(url)
     response.raise_for_status()
-    # print(response.content)
     soup = bs4.BeautifulSoup(response.content, "html.parser")
     # simania's rebuilt site puts the book title in the page's h1 (the old
     # markup had it in an unstyled h2, which no longer exists)
@@ -82,7 +78,6 @@ def do_check_books(files_to_check):
             shelve.open(os.path.join("shelve", "simania_id_to_simania_data.shelve")) as cache_simania:
         session = requests.Session()
         for file_to_check in files_to_check:
-            # print(f"checking [{file_to_check}]")
             with open(file_to_check, encoding="utf-8") as stream:
                 data = yaml.safe_load(stream)
             data = data["items"]

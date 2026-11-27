@@ -48,14 +48,12 @@ def do_check_videos(files_to_check):
             return cinemagoer_instance[0]
 
         for file_to_check in files_to_check:
-            # print(f"checking [{file_to_check}]")
             with open(file_to_check, encoding="utf-8") as stream:
                 data = yaml.safe_load(stream)
             data = data["items"]
             for datum in data:
                 f_imdb_id = datum["imdb_id"]
                 f_name = datum["name"]
-                # print(f"doing [{f_name}] [{f_imdb_id}]")
                 imdb_data = imdb_id_to_imdb_data(f_imdb_id, cache, get_cinemagoer)
                 f_title = imdb_data["title"]
                 assert f_title == f_name, f"{f_imdb_id} {f_title} {f_name}"
